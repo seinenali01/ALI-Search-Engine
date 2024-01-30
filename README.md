@@ -5,6 +5,7 @@ Welcome to the `ALI Search Engine` repository! This project is an attempt to cre
 ![preview](https://github.com/seinenali01/ALI-Search-Engine/assets/157710508/40a54e4f-5f34-4891-8d51-1a5f2d418640)
 
 
+
 ## Overview
 The ALI Search Engine project simulates a search experience similar to Google, allowing users to input search queries and receive search results. It includes features like:
 
