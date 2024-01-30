@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ALI Search Results</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="center-container">  
+    <div class="container">
+      <img src="alilogo.png" alt="ALI Logo" class="ali-logo">
+      <div class="search-bar">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search ALI" oninput="showSuggestions()">
+        <button class="search-button" onclick="performSearch()">Ali Search</button>
+        <button class="lucky-button" onclick="feelingLucky()">I'm Feeling Lucky!</button>
+        <div class="search-suggestions" id="suggestions"></div>
+      </div>
+      <div class="search-results">
+        <h2>Search Results:</h2>
+        <ul id="resultsList">
+          <!-- Results will be dynamically added here -->
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function performSearch() {
+      var searchInput = document.getElementById("searchInput").value;
+      console.log("Search Query: " + searchInput);
+      updateResultsList([
+        { title: "Medium", url: "https://medium.com/" },
+        { title: "3Blue1Brown", url: "https://www.3blue1brown.com/" },
+        { title: "Google", url: "https://www.google.com/" }
+      ]);
+    }
+
+    function feelingLucky() {
+
+      var luckyWebsites = [
+        "https://play.typeracer.com/",
+        "https://www.youtube.com/watch?v=ojbbC020s3Q",
+        "https://www.16personalities.com/",
+        "https://poki.com/"        
+      ];
+
+
+      var randomIndex = Math.floor(Math.random() * luckyWebsites.length);
+
+      window.location.href = luckyWebsites[randomIndex];
+    }
+
+    function showSuggestions() {
+      var suggestions = ["CNN", "Machine Learning", "Typing Games"];
+      var input = document.getElementById("searchInput").value.toLowerCase();
+      var filteredSuggestions = suggestions.filter(suggestion => suggestion.toLowerCase().includes(input));
+
+      var suggestionsContainer = document.getElementById("suggestions");
+      suggestionsContainer.innerHTML = "";
+
+      filteredSuggestions.forEach(suggestion => {
+        var suggestionElement = document.createElement("div");
+        suggestionElement.classList.add("suggestion");
+        suggestionElement.textContent = suggestion;
+        suggestionElement.addEventListener("click", function() {
+          document.getElementById("searchInput").value = suggestion;
+          suggestionsContainer.innerHTML = "";
+        });
+        suggestionsContainer.appendChild(suggestionElement);
+      });
+    }
+
+    function updateResultsList(results) {
+      var resultsList = document.getElementById("resultsList");
+      resultsList.innerHTML = "";
+
+      results.forEach(result => {
+        var resultItem = document.createElement("li");
+        var resultLink = document.createElement("a");
+        resultLink.href = result.url;
+        resultLink.textContent = result.title;
+        resultItem.appendChild(resultLink);
+        resultsList.appendChild(resultItem);
+      });
+    }
+  </script>
+</body>
+</html>
